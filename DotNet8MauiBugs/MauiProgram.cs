@@ -19,6 +19,10 @@ namespace DotNet8MauiBugs
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            builder.Services.AddTransient<MainPage>();
+            builder.Services.AddTransient<MainViewModel>();
+            builder.Services.AddSingleton<AppShell>();
+
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif

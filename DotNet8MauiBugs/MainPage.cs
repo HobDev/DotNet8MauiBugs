@@ -49,7 +49,7 @@ public class MainPage : ContentPage
                 ItemSizingStrategy= ItemSizingStrategy.MeasureFirstItem,
                // ItemsSource= viewModel.FilteredVendors,
                 ItemTemplate = venueTemplate,
-                ItemsLayout = new GridItemsLayout(2,ItemsLayoutOrientation.Vertical)
+                ItemsLayout = new GridItemsLayout(3,ItemsLayoutOrientation.Vertical)
                 {
                     HorizontalItemSpacing = 0,
                     VerticalItemSpacing=20

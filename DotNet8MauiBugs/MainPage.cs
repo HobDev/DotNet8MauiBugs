@@ -35,7 +35,7 @@ public class MainPage : ContentPage
 
                           new Label{ TextColor=Colors.Black }.Bind(Label.TextProperty, nameof(Venue.FullName)),
                           new Label{TextColor=Colors.Black }.Bind(Label.TextProperty, nameof(Venue.City)),
-                         // timeLabel,
+                          timeLabel,
                           new HorizontalStackLayout
                           {
                                new Button{ Text= "EDIT",  FontSize=14,  Padding = new Thickness(4), WidthRequest=100, VerticalOptions= LayoutOptions.Center }.BindCommand(nameof(viewModel.EditVendorCommand), source:viewModel, parameterPath: "."),

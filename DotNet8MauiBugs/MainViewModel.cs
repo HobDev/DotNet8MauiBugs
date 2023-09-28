@@ -1,16 +1,48 @@
 ﻿
 
-using CommunityToolkit.Maui.Views;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using System.Windows.Input;
 
 namespace DotNet8MauiBugs
 {
-    public partial class MainViewModel : ObservableObject
+    public class MainViewModel : INotifyPropertyChanged
     {
-        [ObservableProperty]
+
+        public ICommand EditVendorCommand { get; private set; } 
+        public ICommand ChangePasswordCommand { get; private set; } 
+      
+       
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+       
         ObservableCollection<Venue> filteredVendors;
+      public  ObservableCollection<Venue> FilteredVendors
+        {
+            get => filteredVendors;
+            set => SetProperty(ref filteredVendors, value);
+                
+        }
+
+
+        bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = null)
+        {
+            if (Object.Equals(storage, value))
+                return false;
+
+            storage = value;
+            OnPropertyChanged(propertyName);
+            return true;
+        }
+
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         public MainViewModel()
         {
             FilteredVendors = new ObservableCollection<Venue>
@@ -21,9 +53,12 @@ namespace DotNet8MauiBugs
                 new Venue { FullName = "Venue 4", City = "City 4" },
 
             };
+
+            EditVendorCommand = new Command<Venue>(async(venue)=>await EditVendor(venue));
+            ChangePasswordCommand = new Command<Venue>(async (venue)=>await ChangePassword(venue));
         }
 
-        [RelayCommand]
+      
 
         async Task EditVendor(Venue venue)
         {
@@ -31,7 +66,7 @@ namespace DotNet8MauiBugs
 
         }
 
-        [RelayCommand]
+      
         async Task ChangePassword(Venue venue)
         {
            

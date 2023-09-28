@@ -17,11 +17,14 @@ namespace DotNet8MauiBugs
             {
                 new Venue { FullName = "Venue 1", City = "City 1" },
                 new Venue { FullName = "Venue 2", City = "City 2" },
+                new Venue { FullName = "Venue 3", City = "City 3" },
+                new Venue { FullName = "Venue 4", City = "City 4" },
 
             };
         }
 
         [RelayCommand]
+
         async Task EditVendor(Venue venue)
         {
             

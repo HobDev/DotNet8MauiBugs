@@ -67,7 +67,7 @@ namespace DotNet8MauiBugs
         }
 
       
-        async Task ChangePassword(Venue venue)
+        async Task ChangePassword(Venue venue)    
         {
            
         }

@@ -4,6 +4,7 @@ public class MainPage : ContentPage
 {
 	public MainPage(MainViewModel viewModel)
 	{
+		
 		Content = new VerticalStackLayout
 		{
 			Children = {

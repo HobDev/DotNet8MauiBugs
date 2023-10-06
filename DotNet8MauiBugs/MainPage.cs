@@ -1,5 +1,4 @@
 using CommunityToolkit.Maui.Markup;
-using Microsoft.UI.Xaml.Controls;
 using System.Collections.ObjectModel;
 
 namespace DotNet8MauiBugs;

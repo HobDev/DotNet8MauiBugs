@@ -2,7 +2,6 @@
 
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
-using Windows.UI.WebUI;
 
 namespace DotNet8MauiBugs
 {

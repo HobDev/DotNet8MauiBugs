@@ -1,4 +1,5 @@
 using CommunityToolkit.Maui.Markup;
+using Kotlin.Coroutines.Jvm.Internal;
 using System.Collections.ObjectModel;
 
 namespace DotNet8MauiBugs;
@@ -9,17 +10,7 @@ public class MainPage : ContentPage
 	{
         try
         {
-            Label timeLabel = new Label { };
-            timeLabel.SetBinding(Label.TextProperty, new MultiBinding
-            {
-                Bindings = new Collection<BindingBase>
-                          {
-                              new Binding(nameof(Venue.StartTime), stringFormat:"{0: HH.mm}"),
-                               new Binding(nameof(Venue.EndTime), stringFormat:"{0: HH.mm}")
-                          },
-                StringFormat = "{0: HH.mm} - {1: HH.mm}",
-
-            });
+           
             DataTemplate venueTemplate = new DataTemplate(() =>
             {
 
@@ -35,7 +26,10 @@ public class MainPage : ContentPage
 
                           new Label{ TextColor=Colors.Black }.Bind(Label.TextProperty, nameof(Venue.FullName)),
                           new Label{TextColor=Colors.Black }.Bind(Label.TextProperty, nameof(Venue.City)),
-                          timeLabel,
+                          new Label {FontSize=22 }.Bind(Label.TextProperty,
+                   binding1: new Binding(nameof(Venue.StartTime), stringFormat:"{0: HH.mm}"),
+                   binding2: new Binding(nameof(Venue.EndTime), stringFormat:"{0: HH.mm}"),
+                   convert: ((string start, string end)values)=> $"{values.start}-{values.end}"),
                           new HorizontalStackLayout
                           {
                                new Button{ Text= "EDIT",  FontSize=14,  Padding = new Thickness(4), WidthRequest=100, VerticalOptions= LayoutOptions.Center }.BindCommand(nameof(viewModel.EditVendorCommand), source:viewModel, parameterPath: "."),
@@ -58,7 +52,7 @@ public class MainPage : ContentPage
 
            new CollectionView
             {
-                ItemSizingStrategy= ItemSizingStrategy.MeasureFirstItem,
+               // ItemSizingStrategy= ItemSizingStrategy.MeasureFirstItem,
                // ItemsSource= viewModel.FilteredVendors,
                 ItemTemplate = venueTemplate,
                 ItemsLayout = new LinearItemsLayout(ItemsLayoutOrientation.Vertical)

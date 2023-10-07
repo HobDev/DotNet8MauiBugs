@@ -9,23 +9,24 @@ public class MainPage : ContentPage
         try
         {
 
-            Label fullNameLabel = new Label { TextColor = Colors.Black };
-            fullNameLabel.SetBinding(Label.TextProperty, nameof(Venue.FullName));
-            Label cityLabel = new Label { TextColor = Colors.Black };
-            cityLabel.SetBinding(Label.TextProperty, nameof(Venue.City));
-            HorizontalStackLayout horizontalStackLayout = new HorizontalStackLayout { };
-
-            Button editButton = new Button { Text = "EDIT", FontSize = 14, Padding = new Thickness(4), WidthRequest = 100, VerticalOptions = LayoutOptions.Center };
-            editButton.SetBinding(Button.CommandProperty, new Binding(nameof(viewModel.EditVendorCommand), BindingMode.TwoWay, source: viewModel));
-            editButton.SetBinding(Button.CommandParameterProperty, new Binding(".", BindingMode.TwoWay));
-            Button changePasswordButton = new Button { Text = "CHANGE PASSWORD", FontSize = 14, Padding = new Thickness(4), WidthRequest = 200, VerticalOptions = LayoutOptions.Center };
-            changePasswordButton.SetBinding(Button.CommandProperty, new Binding(nameof(viewModel.ChangePasswordCommand), BindingMode.TwoWay, source: viewModel));
-            changePasswordButton.SetBinding(Button.CommandParameterProperty, new Binding(".", BindingMode.TwoWay));
-            horizontalStackLayout.Children.Add(editButton);
-            horizontalStackLayout.Children.Add(changePasswordButton);
+           
 
             DataTemplate venueTemplate = new DataTemplate(() =>
             {
+                Label fullNameLabel = new Label { TextColor = Colors.Black };
+                fullNameLabel.SetBinding(Label.TextProperty, nameof(Venue.FullName));
+                Label cityLabel = new Label { TextColor = Colors.Black };
+                cityLabel.SetBinding(Label.TextProperty, nameof(Venue.City));
+                HorizontalStackLayout horizontalStackLayout = new HorizontalStackLayout { };
+
+                Button editButton = new Button { Text = "EDIT", FontSize = 14, Padding = new Thickness(4), WidthRequest = 100, VerticalOptions = LayoutOptions.Center };
+                editButton.SetBinding(Button.CommandProperty, new Binding(nameof(viewModel.EditVendorCommand), BindingMode.TwoWay, source: viewModel));
+                editButton.SetBinding(Button.CommandParameterProperty, new Binding(".", BindingMode.TwoWay));
+                Button changePasswordButton = new Button { Text = "CHANGE PASSWORD", FontSize = 14, Padding = new Thickness(4), WidthRequest = 200, VerticalOptions = LayoutOptions.Center };
+                changePasswordButton.SetBinding(Button.CommandProperty, new Binding(nameof(viewModel.ChangePasswordCommand), BindingMode.TwoWay, source: viewModel));
+                changePasswordButton.SetBinding(Button.CommandParameterProperty, new Binding(".", BindingMode.TwoWay));
+                horizontalStackLayout.Children.Add(editButton);
+                horizontalStackLayout.Children.Add(changePasswordButton);
 
                 VerticalStackLayout verticalStackLayout = new VerticalStackLayout { WidthRequest = 350, Padding = 20, BackgroundColor = Color.FromArgb("#e6e6e6") };
 

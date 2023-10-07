@@ -41,7 +41,7 @@ public class MainPage : ContentPage
             Padding = new Thickness(20);
 
             CollectionView collectionView = new CollectionView { };
-            collectionView.ItemSizingStrategy = ItemSizingStrategy.MeasureFirstItem;
+          
             collectionView.ItemTemplate = venueTemplate;
 
             collectionView.ItemsLayout = new LinearItemsLayout(ItemsLayoutOrientation.Vertical)
